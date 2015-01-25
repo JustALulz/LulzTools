@@ -153,7 +153,7 @@ if %2 == repodump_create (
 	)
 	svnadmin dump . > repo.dump
 	svndumpfilter include %3/ < repo.dump > %3.dump
-	echo lulztools/main.bat:svn> Project '%3" has been succesfully dumped to file %3.dump
+	echo lulztools/main.bat:svn> Project '%3' has been succesfully dumped to file %3.dump
 	goto end
 )
 if %2 == initstructure_create (
