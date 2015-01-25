@@ -123,6 +123,9 @@ if %Day% == 13 (
 		echo      S T A N          K Y L E        K E N N Y         C A R T M A N
 		echo.
 		echo Today is the release date of South Park, and i'll be celebratin'
+		pause >nul
+		cls
+		goto system_comcheck
 	)
 	goto system_comcheck
 )
