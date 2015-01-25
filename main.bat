@@ -426,6 +426,9 @@ if %option% == c2 do (
 	pause >nul
 	goto system_conf
 )
+if %option% == e goto end
+if %option% == E goto end
+goto system_conf
 
 :brute_force
 cls
