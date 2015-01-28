@@ -162,15 +162,30 @@ if %Day% == 13 (
 goto system_comcheck
 
 :system_comcheck
-if %1 == svn goto svn
-if %1 == standalone goto standalone
-if %1 == wininfo goto wininfo
-if %1 == windowsevents goto windowsevents
-if %1 == backdoor goto backdoor_find
-if %1 == clear goto clear
-if %1 == system goto system_main
-if %1 == brute_force goto brute-force
-if %1 == lulzdb goto lulzdb
+if %1 == console (
+	goto console
+) else (
+	set interp = %1
+	goto interpreter
+)
+
+:interpreter
+if %interp% == svn goto svn
+if %interp% == standalone goto standalone
+if %interp% == wininfo goto wininfo
+if %interp% == windowsevents goto windowsevents
+if %interp% == backdoor goto backdoor_find
+if %interp% == clear_cookies goto clear
+if %interp% == system goto system_main
+if %interp% == bruteforce goto brute-force
+if %interp% == lulzdb goto lulzdb
+if %1 == console goto console
+goto end
+
+:console
+set /p interp=lulztools/main.bat> 
+echo lulztools/main.bat> Not Finished
+goto end
 
 :svn
 if %2 == repodump_create (
