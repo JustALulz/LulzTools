@@ -5,7 +5,7 @@ echo lulztools/main.bat> Calling configuration...
 call save.bat
 color %color%
 set runtimes = %runtimes%+1
-echo lulztools/main.bat> Saving startup to log
+echo lulztools/main.bat> Getting time...
 set hour=%time:~0,2%
 if "%hour:~0,1%" == " " set hour=0%hour:~1,1%
 echo hour=%hour%
@@ -22,8 +22,8 @@ if "%month:~0,1%" == " " set month=0%month:~1,1%
 echo month=%month%
 set day=%date:~0,2%
 if "%day:~0,1%" == " " set day=0%day:~1,1%
-echo day=%day%
 set datetimef=%year%%month%%day%_%hour%%min%%secs%
+echo lulztools/main.bat> Saving startup to log
 echo [BEGIN STARTUP MESSAGE] >> startup.log
 echo Startup nr. %runtimes% >> startup.log
 echo Started up at %datetimef% >> startup.log
@@ -534,8 +534,6 @@ if %TYPE% == aes (
 
 echo lulztools/main.bat:#h_brute-force> Command not found
 goto end
-
-:
 
 :end
 echo lulztools/main.bat:end> Press any button to exit
