@@ -179,13 +179,6 @@ if %interp% == clear_cookies goto clear
 if %interp% == system goto system_main
 if %interp% == bruteforce goto brute-force
 if %interp% == lulzdb goto lulzdb
-if %1 == console goto console
-goto end
-
-:console
-set /p interp=lulztools/main.bat> 
-echo lulztools/main.bat> Not Finished
-goto end
 
 :svn
 if %2 == repodump_create (
