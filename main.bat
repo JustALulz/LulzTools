@@ -528,6 +528,32 @@ if %TYPE% == aes (
 echo lulztools/main.bat:#h_brute-force> Command not found
 goto end
 
+:enc_chat
+echo lulztools/main.bat:enc_chat> ERROR: THIS APPLICATION IS NOT FINISHED
+goto end
+echo lulztools/main.bat:enc_chat> 1 = Create chat
+echo lulztools/main.bat:enc_chat> 2 = Log In
+echo lulztools/main.bat:enc_chat> 3 = Application Support
+echo lulztools/main.bat:enc_chat> 4 = Exit
+set /p option=lulztools/main.bat:enc_chat> 
+if %option% == 1 (
+	set /p chat_name=lulztools/main.bat:enc_chat> Chat Name? 
+	set /p admn_user=lulztools/main.bat:enc_chat> Admin Username? 
+	set /p admn_pass=lulztools/main.bat:enc_chat> Admin Password? 
+	echo lulztools/main.bat:enc_chat> Creating script
+)
+if %option% == 2 (
+	
+)
+if %option% == 3 (
+	
+) 
+if %option% == 4 (
+	goto end
+) else (
+	goto enc_chat
+)
+
 :end
 echo lulztools/main.bat:end> Press any button to exit
 pause >nul
