@@ -539,8 +539,9 @@ if %option% == 2 goto enc-chat_client
 goto end
 
 :enc-chat_server
-echo lulztools/main.bat:enc-chat_server> Running enc-chat savefile
+echo lulztools/main.bat:enc-chat_server> Getting information...
 call enc-chat_savefile.bat
+php enc-chat_server.php
 
 :end
 echo lulztools/main.bat:end> Press any button to exit
